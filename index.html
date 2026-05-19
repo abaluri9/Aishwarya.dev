@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Aishwarya Baluri | Java Full Stack Developer</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --black:#0b0b0b;
+      --taupe:#d5d2c8;
+      --cream:#f0efe7;
+      --white:#ffffff;
+    }
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    body{
+      font-family:'Manrope',sans-serif;
+      background:var(--cream);
+      color:var(--black);
+      overflow-x:hidden;
+    }
+
+    .container{
+      width:min(1180px, calc(100% - 40px));
+      margin:0 auto;
+    }
+
+    nav{
+      margin:34px auto 0;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      position:relative;
+      z-index:20;
+    }
+
+    .nav-links{
+      display:flex;
+      align-items:center;
+      gap:28px;
+    }
+
+    .nav-links a{
+      color:rgba(11,11,11,.68);
+      text-decoration:none;
+      font-size:15px;
+      font-weight:700;
+      transition:.2s ease;
+      position:relative;
+    }
+
+    .nav-links a:hover{
+      color:var(--black);
+    }
+
+    .nav-links a::after{
+      content:"";
+      position:absolute;
+      left:0;
+      bottom:-6px;
+      width:0;
+      height:2px;
+      background:var(--black);
+      border-radius:999px;
+      transition:.25s ease;
+    }
+
+    .nav-links a:hover::after{
+      width:100%;
+    }
+
+    .nav-cta{
+      background:var(--black);
+      color:var(--white)!important;
+      padding:12px 22px;
+      border-radius:999px;
+      font-weight:800!important;
+      text-decoration:none;
+      font-size:15px;
+      transition:.22s ease;
+    }
+
+    .nav-cta:hover{
+      transform:translateY(-2px);
+    }
+
+    .hero{
+      min-height:84vh;
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      align-items:center;
+      gap:64px;
+      padding:86px 0 68px;
+    }
+
+    .label{
+      display:inline-flex;
+      padding:10px 18px;
+      border-radius:999px;
+      background:var(--white);
+      color:var(--black);
+      font-size:13px;
+      font-weight:800;
+      margin-bottom:26px;
+      box-shadow:0 18px 42px rgba(0,0,0,.06);
+    }
+
+    h1{
+      max-width:660px;
+      font-size:clamp(48px,5.8vw,78px);
+      line-height:1.04;
+      letter-spacing:-.075em;
+      font-weight:800;
+      margin-bottom:22px;
+    }
+    .name-tag{
+  font-size:15px;
+  font-weight:800;
+  letter-spacing:-0.02em;
+  margin-bottom:18px;
+  color:rgba(11,11,11,.72);
+}
+
+    .hero-copy{
+      max-width:560px;
+      color:rgba(11,11,11,.68);
+      font-size:18px;
+      line-height:1.7;
+      margin-bottom:34px;
+    }
+
+    .actions{
+      display:flex;
+      align-items:center;
+      gap:14px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      text-decoration:none;
+      padding:15px 26px;
+      border-radius:999px;
+      font-size:15px;
+      font-weight:800;
+      transition:.22s ease;
+    }
+
+    .btn.primary{
+      background:var(--black);
+      color:var(--white);
+      box-shadow:0 22px 55px rgba(0,0,0,.18);
+    }
+
+    .btn.secondary{
+      background:var(--white);
+      color:var(--black);
+      border:1px solid rgba(0,0,0,.08);
+    }
+
+    .btn:hover{
+      transform:translateY(-3px);
+    }
+
+    .visual{
+      position:relative;
+      min-height:420px;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .portrait-wrap{
+      width:320px;
+      height:320px;
+      border-radius:50%;
+      background:var(--taupe);
+      position:relative;
+      overflow:hidden;
+      box-shadow:0 30px 80px rgba(0,0,0,.12);
+      border:10px solid rgba(255,255,255,.72);
+    }
+
+    .portrait-wrap img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+    }
+
+    .proof-row{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+      padding:22px 0 76px;
+    }
+
+    .proof-card{
+      background:var(--white);
+      border-radius:30px;
+      padding:30px 26px;
+      box-shadow:0 24px 70px rgba(0,0,0,.07);
+      border:1px solid rgba(0,0,0,.05);
+    }
+
+    .proof-card h3{
+      font-size:28px;
+      line-height:1.1;
+      letter-spacing:-.055em;
+      margin-bottom:10px;
+    }
+
+    .proof-card p{
+      color:rgba(11,11,11,.62);
+      font-size:14px;
+      line-height:1.55;
+    }
+
+    section{
+      padding:78px 0;
+    }
+
+    .section-head{
+      max-width:680px;
+      margin-bottom:32px;
+    }
+
+    .section-title{
+      font-size:clamp(34px,4vw,48px);
+      line-height:1.08;
+      letter-spacing:-.06em;
+      margin-bottom:12px;
+    }
+
+    .section-note{
+      color:rgba(11,11,11,.62);
+      font-size:16px;
+      line-height:1.65;
+    }
+
+    .work-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:18px;
+    }
+
+    .work-card{
+      background:var(--white);
+      border-radius:30px;
+      padding:28px;
+      min-height:220px;
+      box-shadow:0 24px 70px rgba(0,0,0,.07);
+      border:1px solid rgba(0,0,0,.05);
+      transition:.22s ease;
+    }
+
+    .work-card:hover{
+      transform:translateY(-6px);
+    }
+
+    .work-card span{
+      display:inline-flex;
+      background:var(--cream);
+      border-radius:999px;
+      padding:8px 13px;
+      font-size:12px;
+      font-weight:800;
+      margin-bottom:18px;
+    }
+
+    .work-card h3{
+      font-size:20px;
+      letter-spacing:-.04em;
+      margin-bottom:10px;
+    }
+
+    .work-card p{
+      color:rgba(11,11,11,.62);
+      font-size:14px;
+      line-height:1.65;
+    }
+
+    .skills{
+      display:flex;
+      flex-wrap:wrap;
+      gap:12px;
+    }
+
+    .skill{
+      padding:13px 18px;
+      border-radius:999px;
+      background:var(--white);
+      border:1px solid rgba(0,0,0,.06);
+      color:var(--black);
+      font-size:14px;
+      font-weight:800;
+      box-shadow:0 16px 42px rgba(0,0,0,.05);
+    }
+
+    .contact-box{
+      background:var(--black);
+      color:var(--white);
+      border-radius:38px;
+      padding:52px;
+      text-align:center;
+      box-shadow:0 34px 95px rgba(0,0,0,.16);
+    }
+
+    .contact-box h2{
+      font-size:clamp(34px,4vw,48px);
+      letter-spacing:-.06em;
+      margin-bottom:12px;
+    }
+
+    .contact-box p{
+      max-width:620px;
+      margin:0 auto 28px;
+      color:rgba(255,255,255,.68);
+      line-height:1.65;
+    }
+
+    .contact-actions{
+      display:flex;
+      justify-content:center;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .contact-actions a{
+      text-decoration:none;
+      background:var(--white);
+      color:var(--black);
+      padding:14px 22px;
+      border-radius:999px;
+      font-size:14px;
+      font-weight:800;
+      transition:.22s ease;
+    }
+
+    .contact-actions a:hover{
+      transform:translateY(-2px);
+    }
+
+    footer{
+      padding:36px 0 46px;
+      text-align:center;
+      color:rgba(11,11,11,.46);
+      font-size:13px;
+      font-weight:600;
+    }
+
+    @media(max-width:920px){
+      .hero{
+        grid-template-columns:1fr;
+        text-align:center;
+        gap:44px;
+      }
+
+      .hero-copy,.section-head{
+        margin-left:auto;
+        margin-right:auto;
+      }
+
+      .actions{
+        justify-content:center;
+      }
+
+      .proof-row,.work-grid{
+        grid-template-columns:1fr;
+      }
+    }
+
+    @media(max-width:640px){
+      .container{
+        width:min(100% - 28px,1180px);
+      }
+
+      nav{
+        margin-top:18px;
+        align-items:flex-start;
+        gap:18px;
+      }
+
+      .nav-links{
+        gap:14px;
+        flex-wrap:wrap;
+      }
+
+      .nav-links a{
+        font-size:13px;
+      }
+
+      .nav-cta{
+        padding:10px 16px;
+        font-size:13px;
+      }
+
+      .hero{
+        padding-top:58px;
+      }
+
+      h1{
+        font-size:44px;
+      }
+
+      .hero-copy{
+        font-size:16px;
+      }
+
+      .portrait-wrap{
+        width:240px;
+        height:240px;
+      }
+
+      .contact-box{
+        padding:38px 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <nav>
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#work">Work</a>
+        <a href="#skills">Skills</a>
+        <a href="#education">Education</a>
+      </div>
+
+      <a href="#contact" class="nav-cta">Get In Touch</a>
+    </nav>
+
+    <main id="home">
+      <section class="hero">
+       
+        <div class="hero-text">
+          <div class="label">Java · .NET · Spring AI · RAG · React · Angular · AWS · Azure</div>
+          <h1>Enterprise Full Stack Engineer</h1>
+
+          <p class="hero-copy">
+            7 years building production systems across Healthcare, Fintech, and Retail. 
+Currently engineering AI-powered features at <b>Nasco Healthcare</b>.  Previously at <b>Best Buy</b> and <b>Beazley Insurance</b>.
+          </p>
+
+          <div class="actions">
+            <a href="#contact" class="btn primary">Let’s Connect</a>
+            <a href="#work" class="btn secondary">View Work</a>
+          </div>
+        </div>
+
+        <div class="visual">
+          <div class="portrait-wrap">
+            <img src="/Users/aishwaryabaluri/Desktop/profile.png" alt="Aishwarya Baluri headshot">
+          </div>
+        </div>
+      </section>
+
+      <div class="proof-row" id="about">
+        <div class="proof-card">
+          <h3>5+</h3>
+          <p>Clients Served</p>
+          <p>Across Healthcare, Fintech & Retail</p>
+        </div>
+
+        <div class="proof-card">
+          <h3>3</h3>
+          <p>Enterprise Domains</p>
+          <p>US Healthcare · Fortune 100 Retail · Lloyd's Insurance</p>
+        </div>
+
+        <div class="proof-card">
+          <h3>7+</h3>
+          <p>Years Experience</p>
+          <p>Production systems · AI · Cloud · Enterprise</p>
+        </div>
+      </div>
+
+      <section id="work">
+        <div class="section-head">
+          <h2 class="section-title">Work Focus</h2>
+          <p class="section-note">A clear view of the value I bring into development teams.</p>
+        </div>
+
+        <div class="work-grid">
+          <div class="work-card">
+  <span>Backend Engineering</span>
+  <h3>Java & .NET Systems</h3>
+  <p>Designing and delivering Spring Boot microservices, ASP.NET Core APIs, 
+  Kafka event streaming, and cloud-native architectures handling 
+  millions of transactions in enterprise environments.</p>
+</div>
+
+<div class="work-card">
+  <span>AI Integration</span>
+  <h3>RAG & LLM Engineering</h3>
+  <p>Building production grade RAG pipelines, OpenAI API integrations, 
+  and semantic search systems using Spring AI, pgvector, and LangChain4j  
+  deployed on live HIPAA compliant healthcare platforms.</p>
+</div>
+
+<div class="work-card">
+  <span>Frontend & Cloud</span>
+  <h3>React, Angular & AWS</h3>
+  <p>Delivering React 18 and Angular interfaces with SSE streaming, 
+  deployed on AWS ECS Fargate and Azure containerized with Docker, 
+  automated via GitHub Actions CI/CD.</p>
+</div>
+        </div>
+      </section>
+
+      <section id="skills">
+        <div class="section-head">
+          <h2 class="section-title">Skills</h2>
+          <p class="section-note">A focused mix of technical and client-facing strengths.</p>
+        </div>
+
+        <div class="skills">
+          <span class="skill">Java Full Stack</span>
+          <span class="skill">Spring Boot</span>
+          <span class="skill">Microservices</span>
+          <span class="skill">REST APIs</span>
+          <span class="skill">React</span>
+          <span class="skill">Angular</span>
+          <span class="skill">SQL</span>
+          <span class="skill">Azure</span>
+          <span class="skill">Cloud Applications</span>
+          <span class="skill">CI/CD</span>
+          <span class="skill">System Design</span>
+          <span class="skill">Problem Solving</span>
+          <span class="skill">Enterprise Applications</span>
+          <span class="skill">AI Integration</span>
+          <span class="skill">Spring AI</span>
+          <span class="skill">RAG Pipelines</span>
+          <span class="skill">pgvector</span>
+          <span class="skill">OpenAI API</span>
+          <span class="skill">LangChain4j</span>
+          <span class="skill">Kafka</span>
+          <span class="skill">Redis</span>
+          <span class="skill">HIPAA Compliance</span>
+          <span class="skill">Spring Security</span>
+          <span class="skill">Testcontainers</span>
+          <span class="skill">AWS ECS</span>
+          <span class="skill">Docker</span>
+          <span class="skill">Kubernetes</span>
+        </div>
+      </section>
+      <section id="education">
+  <div class="section-head">
+    <h2 class="section-title">Education</h2>
+    <p class="section-note">
+  </div>
+
+  <div class="work-grid" id="education">
+
+    <div class="work-card">
+      <span>Master’s Degree</span>
+      <h3>Master of Science in Information Systems</h3>
+      <p>
+        Focused on enterprise systems, software development, cloud technologies, data management, and modern business applications.
+      </p>
+    </div>
+
+    <div class="work-card">
+      <span>Bachelor’s Degree</span>
+      <h3>Bachelor of Technology in Computer Science Engineering</h3>
+      <p>
+        Built strong foundations in programming, databases, web technologies, software engineering, and problem solving.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+      <section id="contact">
+        <div class="contact-box">
+          <h2>Let’s connect.</h2>
+          <p>Open to Full Stack, cloud-ready, and AI-integrated application development opportunities.</p>
+
+          <div class="contact-actions">
+            <a href="mailto:aishwaryab.career@gmail.com">Email Me</a>
+            <a href="https://www.linkedin.com/in/abaluri7/">LinkedIn</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>Open to Full Stack Java · .NET · AI Roles. 
+<br>Good engineering speaks for itself. Let's talk.
+</footer>
+  </div>
+
+</body>
+</html>
